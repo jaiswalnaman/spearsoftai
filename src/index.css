@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme-color: theme('colors.yellow.300');
+  --theme-glow: rgba(234,179,8,0.8);
+}
+
+[data-theme="blue"] {
+  --theme-color: theme('colors.blue.400');
+  --theme-glow: rgba(96,165,250,0.8);
+}
+
+[data-theme="green"] {
+  --theme-color: theme('colors.green.400');
+  --theme-glow: rgba(74,222,128,0.8);
+}
+
+[data-theme="purple"] {
+  --theme-color: theme('colors.purple.400');
+  --theme-glow: rgba(192,132,252,0.8);
+}
+
+[data-theme="pink"] {
+  --theme-color: theme('colors.pink.400');
+  --theme-glow: rgba(244,114,182,0.8);
+}
+
+[data-theme="orange"] {
+  --theme-color: theme('colors.orange.400');
+  --theme-glow: rgba(251,146,60,0.8);
+}
+
+@layer base {
+  body {
+    @apply bg-black text-gray-100 font-['Orbitron'];
+  }
+
+  ::selection {
+    background-color: var(--theme-color);
+    color: theme('colors.black');
+  }
+
+  /* Theme-based input and textarea styling */
+  input, textarea {
+    @apply border rounded-md bg-gray-800 text-gray-100 px-4 py-3 transition-all duration-300;
+    border-color: var(--theme-color);
+    box-shadow: 0 0 4px var(--theme-glow);
+  }
+
+  input:focus, textarea:focus {
+    @apply outline-none ring-2 ring-opacity-50;
+    border-color: var(--theme-color);
+    box-shadow: 0 0 12px var(--theme-glow);
+    --tw-ring-color: var(--theme-color);
+  }
+
+  input[type="radio"] {
+    @apply appearance-none w-4 h-4 border rounded-full checked:bg-current transition-all duration-300;
+    color: var(--theme-color);
+    border-color: var(--theme-color);
+  }
+
+  input[type="radio"]:checked {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    box-shadow: 0 0 8px var(--theme-glow);
+  }
+}
+
+@layer components {
+  .neon-text {
+    color: var(--theme-color);
+    text-shadow: 0 0 8px var(--theme-glow);
+  }
+  
+  .neon-border {
+    border-color: var(--theme-color);
+    box-shadow: 0 0 8px var(--theme-glow);
+  }
+
+  .hover-neon-border:hover .neon-border {
+    @apply opacity-100;
+  }
+  
+  .neon-button {
+    @apply px-6 py-3 bg-black border rounded-md transition-all duration-300;
+    color: var(--theme-color);
+    border-color: var(--theme-color);
+    box-shadow: 0 0 8px var(--theme-glow);
+  }
+
+  .neon-button:hover {
+    background-color: var(--theme-color);
+    @apply text-black;
+    box-shadow: 0 0 16px var(--theme-glow);
+  }
+
+  .grid-background {
+    background-image: linear-gradient(rgba(31, 41, 55, 0.8) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(31, 41, 55, 0.8) 1px, transparent 1px);
+    background-size: 50px 50px;
+    @apply relative bg-black;
+  }
+
+  .grid-background::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-black via-transparent to-black;
+  }
+
+  .service-card {
+    @apply p-6 rounded-lg border border-gray-800 bg-gray-800/50 backdrop-blur-sm transition-all duration-300;
+  }
+
+  .service-card:hover {
+    border-color: var(--theme-color);
+    box-shadow: 0 0 8px var(--theme-glow);
+    background-color: var(--theme-color);
+    @apply text-black;
+  }
+
+  .service-card:hover .neon-text,
+  .service-card:hover .text-gray-300,
+  .service-card:hover .icon-theme {
+    @apply text-black;
+  }
+
+  .theme-selector {
+    @apply w-8 h-8 rounded-full cursor-pointer transition-transform duration-300 border-2;
+  }
+
+  .theme-selector:hover {
+    @apply transform scale-110;
+  }
+
+  .theme-selector.active {
+    @apply border-white scale-110;
+  }
+
+  .icon-theme {
+    color: var(--theme-color);
+  }
+
+  .bullet-point {
+    background-color: var(--theme-color);
+    box-shadow: 0 0 8px var(--theme-glow);
+  }
+}
